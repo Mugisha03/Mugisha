@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+		.a{
+			background-color: limegreen;
+			color: white;
+			border: none;
+			font-size: 15px;
+			cursor: pointer;
+			height: 37px;
+			
+		}
+		.dir,
+		.c{
+			display: grid;
+			grid-template-columns: 200px 150px 100px;
+			column-gap: 10px;
+			row-gap: 10px;
+			margin-bottom: 10px;
+			align-items: center;
+
+		}
+		.d,
+
+		.e{
+			font-size: 15px;
+			padding: 6px;
+		}
+		.f{
+			background-color: darkred;
+			color: white;
+			border: none;
+			cursor: pointer;
+			font-size: 15px;
+			padding-top: 10px ;
+			padding-bottom:10px ;
+		}
+		
+	</style>
+</head>
+<body>
+	<h1>TODO ACTIVITIES</h1>
+	<div class="c">
+	<input type="" name="" placeholder="Todo name" class="div d">
+	<input type="date" name="" class="dix e">
+
+<button onclick="
+
+addtodo();
+
+" class="a">add</button>
+</div>
+<div class="dir"></div>
+
+	<script type="text/javascript">
+		const todolist = [{
+
+			name: 'make dinner',
+			date: '2023-05-21'},
+			{
+				name: 'wash dishes',
+				date: '2023-07-15'
+			} 
+			];
+		rendertodolist();
+
+		function rendertodolist() {
+
+
+		let todolisthtml = '';
+
+		todolist.forEach(function(todoobject, index) {
+
+			const {name, date} = todoobject;
+			const html = `<div>${name} </div>
+
+			<div>${date}</div>
+
+			<button onclick="
+			todolist.splice(${index}, 1);
+			rendertodolist();
+
+			" class="f">delete</button>
+
+		`;
+			todolisthtml += html;
+
+
+		})
+
+		
+		document.querySelector('.dir')
+		.innerHTML = todolisthtml;
+		}
+
+
+		function addtodo() {
+			const inputElement = document.querySelector('.div');
+			const name = inputElement.value;
+			const inputElementdate = document.querySelector('.dix');
+			const date = inputElementdate.value;
+
+			todolist.push({
+				//name: name,
+				//date: date,
+				name, date
+			});
+
+			
+			inputElement.value = '';
+			rendertodolist();
+
+		}
+		
+	</script>
+</body>
+</html>
